@@ -1,12 +1,16 @@
 import logging
+import os
+from logging.handlers import RotatingFileHandler
 
-logging.basicConfig(level=logging.INFO, format="%(asctime)s - %(levelname)s - %(message)s")
+LOG_DIR = "logs"
+if not os.path.exists(LOG_DIR):
+    os.makedirs(LOG_DIR)
 
-def log_info(mensagem: str):
-    logging.info(mensagem)
+LOG_FILE = os.path.join(LOG_DIR, "backend.log")
+log_handler = RotatingFileHandler(LOG_FILE, maxBytes=5*1024*1024, backupCount=5)  # 🔹 Rotação de logs
+log_formatter = logging.Formatter("%(asctime)s - %(levelname)s - %(message)s")
 
-def log_erro(mensagem: str):
-    logging.error(mensagem)
-
-def log_debug(mensagem: str):
-    logging.debug(mensagem)
+log_handler.setFormatter(log_formatter)
+logger = logging.getLogger()
+logger.setLevel(logging.INFO)
+logger.addHandler(log_handler)

@@ -15,8 +15,8 @@ def obter_credenciais_bling(cliente_id: int, db: Session):
 @router.get("/produtos/{cliente_id}")
 def listar_produtos_bling(cliente_id: int, db: Session = Depends(get_db)):
     api_key = obter_credenciais_bling(cliente_id, db)
-    url = f"https://bling.com.br/api/v3/produtos?apikey={api_key}"
-    
+    url = f"https://bling.com.br/Api/v2/produtos/json?apikey={api_key}"
+
     try:
         response = requests.get(url, timeout=10)
         response.raise_for_status()
