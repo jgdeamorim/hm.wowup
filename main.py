@@ -1,6 +1,6 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-from routes import auth, clientes, produtos, bling, mercadolivre, vendas, notificacoes
+from .routes import auth, clientes, produtos, bling, mercadolivre, vendas, notificacoes
 from dependencies import create_tables
 
 app = FastAPI(
