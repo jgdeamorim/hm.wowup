@@ -1,6 +1,20 @@
 from pydantic import BaseModel, EmailStr
 from typing import Optional
 
+class VendaBase(BaseModel):
+    produto_id: int
+    quantidade: int
+    valor_total: float
+
+class VendaCreate(VendaBase):
+    pass
+
+class VendaResponse(VendaBase):
+    id: int
+
+    class Config:
+        from_attributes = True
+
 class ClienteBase(BaseModel):
     nome: str
     email: EmailStr
@@ -40,4 +54,4 @@ class CredenciaisAPIResponse(CredenciaisAPIBase):
     cliente_id: int
 
     class Config:
-        from_attributes = True  # Corrigido para Pydantic V2
+        from_attributes = True
