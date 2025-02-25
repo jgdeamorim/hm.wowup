@@ -4,7 +4,7 @@ from routes import auth, clientes, produtos, bling, mercadolivre, vendas, notifi
 from dependencies import create_tables
 
 app = FastAPI(
-    title="Sistema de Gestão",
+    title="Backend Hub Mercado",
     description="API para integração de clientes, produtos e vendas",
     version="1.0.0"
 )

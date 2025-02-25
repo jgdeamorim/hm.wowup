@@ -44,7 +44,6 @@ class ProdutoResponse(ProdutoBase):
     class Config:
         from_attributes = True
 
-
 class CredenciaisAPIBase(BaseModel):
     bling_api_key: Optional[str] = None
     mercadolivre_access_token: Optional[str] = None
@@ -52,6 +51,17 @@ class CredenciaisAPIBase(BaseModel):
 class CredenciaisAPIResponse(CredenciaisAPIBase):
     id: int
     cliente_id: int
+
+    class Config:
+        from_attributes = True
+
+# ✅ Correção: Adicionando `NotificacaoBase` e `NotificacaoResponse`
+class NotificacaoBase(BaseModel):
+    mensagem: str
+    tipo: str
+
+class NotificacaoResponse(NotificacaoBase):
+    id: int
 
     class Config:
         from_attributes = True
