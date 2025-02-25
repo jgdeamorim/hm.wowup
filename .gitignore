@@ -1,0 +1,19 @@
+# Evita enviar credenciais e configurações locais
+.env
+
+# Dependências do Python
+venv/
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Arquivos de logs e banco de dados local
+logs/
+*.log
+*.sqlite3
+*.db
+
+# Configurações do Editor
+.vscode/
+.idea/
