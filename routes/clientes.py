@@ -2,7 +2,7 @@ from fastapi import APIRouter, Depends
 from sqlalchemy.orm import Session
 from database.connection import get_db
 from database.schemas import ClienteCreate, ClienteResponse
-from services.cliente_service import criar_cliente, listar_clientes
+from backend.services.cliente_service import criar_cliente, listar_clientes
 
 router = APIRouter(prefix="/clientes", tags=["Clientes"])
 

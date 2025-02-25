@@ -28,7 +28,8 @@ class ProdutoResponse(ProdutoBase):
     cliente_id: int
 
     class Config:
-        from_attributes = True  # Corrigido para Pydantic V2
+        from_attributes = True
+
 
 class CredenciaisAPIBase(BaseModel):
     bling_api_key: Optional[str] = None
