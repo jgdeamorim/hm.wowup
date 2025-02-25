@@ -1,19 +1,37 @@
-# Evita enviar credenciais e configurações locais
+# ⚠️ Proteção contra vazamento de credenciais e configurações locais
 .env
+.env.local
+.env.production
+secrets.json
 
-# Dependências do Python
+# 🐍 Dependências do Python
 venv/
 __pycache__/
 *.pyc
 *.pyo
 *.pyd
 
-# Arquivos de logs e banco de dados local
+# 🛠 Arquivos de logs e banco de dados local
 logs/
 *.log
 *.sqlite3
 *.db
+*.db-journal
 
-# Configurações do Editor
+# 🚀 Configurações do Editor (VSCode, JetBrains, etc.)
 .vscode/
 .idea/
+*.sublime-project
+*.sublime-workspace
+
+# 🛠 Arquivos de dependências e builds
+pip-log.txt
+pip-delete-this-directory.txt
+poetry.lock
+Pipfile
+Pipfile.lock
+
+# 🐳 Docker e Railway
+.dockerignore
+.docker-compose.yml
+.railway/
