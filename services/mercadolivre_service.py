@@ -5,7 +5,6 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
-# 🔹 URLs e Configurações
 ML_CLIENT_ID = os.getenv("ML_CLIENT_ID")
 ML_CLIENT_SECRET = os.getenv("ML_CLIENT_SECRET")
 ML_ACCESS_TOKEN = os.getenv("ML_ACCESS_TOKEN")

@@ -12,7 +12,7 @@ class ClienteResponse(ClienteBase):
     id: int
 
     class Config:
-        orm_mode = True
+        from_attributes = True  # Atualizado para Pydantic V2
 
 class ProdutoBase(BaseModel):
     nome: str
@@ -28,7 +28,7 @@ class ProdutoResponse(ProdutoBase):
     cliente_id: int
 
     class Config:
-        orm_mode = True
+        from_attributes = True  # Corrigido para Pydantic V2
 
 class CredenciaisAPIBase(BaseModel):
     bling_api_key: Optional[str] = None
@@ -39,4 +39,4 @@ class CredenciaisAPIResponse(CredenciaisAPIBase):
     cliente_id: int
 
     class Config:
-        orm_mode = True
+        from_attributes = True  # Corrigido para Pydantic V2

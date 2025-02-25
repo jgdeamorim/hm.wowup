@@ -14,3 +14,12 @@ log_handler.setFormatter(log_formatter)
 logger = logging.getLogger()
 logger.setLevel(logging.INFO)
 logger.addHandler(log_handler)
+
+def log_info(mensagem: str):
+    logger.info(mensagem)
+
+def log_erro(mensagem: str):
+    logger.error(mensagem)
+
+def log_debug(mensagem: str):
+    logger.debug(mensagem)
