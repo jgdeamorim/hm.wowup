@@ -5,17 +5,21 @@ services:
     image: postgres:latest
     restart: always
     environment:
-      POSTGRES_DB: sistema_db
-      POSTGRES_USER: admin
-      POSTGRES_PASSWORD: senha_forte
+      POSTGRES_DB: railway
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: GLYMJODznGycGYYfCjHrSfQHOoxCBjDQ
     ports:
       - "5432:5432"
+    networks:
+      - app_network
 
   redis:
     image: redis:latest
     restart: always
     ports:
       - "6379:6379"
+    networks:
+      - app_network
 
   backend:
     build: .
@@ -24,8 +28,14 @@ services:
       - db
       - redis
     environment:
-      DATABASE_URL: postgresql://admin:senha_forte@db/sistema_db
-      REDIS_URL: redis://redis:6379
+      DATABASE_URL: postgresql://postgres:GLYMJODznGycGYYfCjHrSfQHOoxCBjDQ@mainline.proxy.rlwy.net:28010/railway
+      REDIS_URL: redis://shinkansen.proxy.rlwy.net:52731
     ports:
       - "8000:8000"
     command: uvicorn main:app --host 0.0.0.0 --port 8000 --reload
+    networks:
+      - app_network
+
+networks:
+  app_network:
+    driver: bridge
