@@ -11,3 +11,5 @@ requests==2.32.3
 openai==1.64.0
 gunicorn==21.2.0  # Para rodar na Railway
 psycopg2-binary==2.9.10
+email-validator==2.2.0
+
