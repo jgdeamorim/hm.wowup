@@ -1,17 +1,20 @@
-# Use uma imagem leve do Python
-FROM python:3.11
+# 1️⃣ Use uma imagem leve do Python
+FROM python:3.11-slim
 
-# Defina o diretório de trabalho
+# 2️⃣ Defina o diretório de trabalho
 WORKDIR /app
 
-# Copie os arquivos necessários
-COPY . /app/
+# 3️⃣ Copie apenas o requirements.txt primeiro (aproveita cache do Docker)
+COPY requirements.txt /app/
 
-# Instale as dependências
+# 4️⃣ Instale dependências
 RUN pip install --no-cache-dir -r requirements.txt
 
-# Exponha a porta 8000 para comunicação
+# 5️⃣ Copie todos os arquivos restantes **EXCETO arquivos indesejados**
+COPY . /app/
+
+# 6️⃣ Exponha a porta padrão do FastAPI
 EXPOSE 8000
 
-# Comando para iniciar a aplicação no Railway
+# 7️⃣ Execute o comando para iniciar a aplicação
 CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8000"]
