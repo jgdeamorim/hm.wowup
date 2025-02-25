@@ -1,4 +1,5 @@
 from pydantic_settings import BaseSettings
+
 class Settings(BaseSettings):
     PROJECT_NAME: str = "Hub Mercado"
     API_VERSION: str = "v1"
@@ -14,8 +15,8 @@ class Settings(BaseSettings):
     REDIS_URL: str
 
     # Chaves de API externas (Bling e Mercado Livre)
-    BLING_API_KEY: str
-    MERCADOLIVRE_ACCESS_TOKEN: str
+    BLING_API_KEY: str = ""
+    MERCADOLIVRE_ACCESS_TOKEN: str = ""
 
     class Config:
         env_file = ".env"
