@@ -1,17 +1,17 @@
-# Use uma imagem leve do Python
+# Usa uma imagem oficial do Python
 FROM python:3.11
 
-# Defina o diretório de trabalho
+# Define o diretório de trabalho
 WORKDIR /app
 
-# Copie os arquivos para dentro do contêiner
-COPY . .
+# Copia os arquivos para dentro do container
+COPY . /app/
 
-# Instale as dependências
+# Instala as dependências
 RUN pip install --no-cache-dir -r requirements.txt
 
-# Exponha a porta 8000
+# Expõe a porta 8000 para comunicação externa
 EXPOSE 8000
 
-# Comando para rodar o FastAPI (caso o main.py esteja na raiz do projeto)
-CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8000", "--reload"]
+# Define o comando de execução
+CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8000"]

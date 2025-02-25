@@ -55,7 +55,6 @@ class CredenciaisAPIResponse(CredenciaisAPIBase):
     class Config:
         from_attributes = True
 
-# ✅ Correção: Adicionando `NotificacaoBase` e `NotificacaoResponse`
 class NotificacaoBase(BaseModel):
     mensagem: str
     tipo: str

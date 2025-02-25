@@ -2,7 +2,7 @@ from sqlalchemy import Column, Integer, String, ForeignKey, DateTime, Float
 from sqlalchemy.orm import relationship, declarative_base
 from datetime import datetime
 
-# 🔹 Definição correta da Base
+# 🔹 Definição da Base para os modelos
 Base = declarative_base()
 
 class Cliente(Base):
@@ -13,9 +13,11 @@ class Cliente(Base):
     email = Column(String, unique=True, nullable=False)
     criado_em = Column(DateTime, default=datetime.utcnow)
 
+    # 🔹 Relacionamentos
     produtos = relationship("Produto", back_populates="cliente")
     credenciais = relationship("CredenciaisAPI", back_populates="cliente")
-    vendas = relationship("Venda", back_populates="cliente")  # 🔹 Adicionando relacionamento com Venda
+    vendas = relationship("Venda", back_populates="cliente")
+    notificacoes = relationship("Notificacao", back_populates="cliente")  # 🔹 Novo relacionamento com Notificação
 
 class Produto(Base):
     __tablename__ = "produtos"
@@ -23,7 +25,7 @@ class Produto(Base):
     id = Column(Integer, primary_key=True, index=True)
     nome = Column(String, nullable=False)
     categoria = Column(String)
-    preco = Column(Integer)
+    preco = Column(Float, nullable=False)  # 🔹 Alterado para Float para garantir precisão em preços
     estoque = Column(Integer)
     cliente_id = Column(Integer, ForeignKey("clientes.id"))
 
@@ -39,7 +41,6 @@ class CredenciaisAPI(Base):
 
     cliente = relationship("Cliente", back_populates="credenciais")
 
-# 🔹 Adicionando a classe Venda ao models.py
 class Venda(Base):
     __tablename__ = "vendas"
 
@@ -52,3 +53,14 @@ class Venda(Base):
 
     cliente = relationship("Cliente", back_populates="vendas")
     produto = relationship("Produto")
+
+# 🔹 Adicionando a classe Notificacao para corrigir erro de importação
+class Notificacao(Base):
+    __tablename__ = "notificacoes"
+
+    id = Column(Integer, primary_key=True, index=True)
+    mensagem = Column(String, nullable=False)
+    timestamp = Column(DateTime, default=datetime.utcnow)
+    cliente_id = Column(Integer, ForeignKey("clientes.id"), nullable=False)
+
+    cliente = relationship("Cliente", back_populates="notificacoes")
